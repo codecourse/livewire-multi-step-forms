@@ -14,8 +14,19 @@ class PublishStep extends StepComponent
         ];
     }
 
+    public function submit()
+    {
+        $this->state()->product()->update([
+            'published' => true,
+        ]);
+
+        return redirect()->back();
+    }
+
     public function render()
     {
-        return view('livewire.products.create.steps.publish-step');
+        return view('livewire.products.create.steps.publish-step', [
+            'product' => $this->state()->product()
+        ]);
     }
 }
