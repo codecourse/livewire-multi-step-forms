@@ -16,9 +16,11 @@
                     <x-input-error :messages="$errors->get('description')" class="mt-2" />
                 </div>
 
-                <x-primary-button>
-                    {{ __('Next step') }}
-                </x-primary-button>
+                <x-livewire::products.create.buttons>
+                    <x-primary-button>
+                        {{ __('Next step') }}
+                    </x-primary-button>
+                </x-livewire::products.create.buttons>
             </form>
         </div>
     </div>

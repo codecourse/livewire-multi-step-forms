@@ -17,9 +17,16 @@
                     @endif
                 </div>
 
-                <x-primary-button>
-                    {{ __('Next step') }}
-                </x-primary-button>
+                <x-livewire::products.create.buttons>
+                    <x-slot:back>
+                        <x-secondary-button wire:click="previousStep">
+                            Back
+                        </x-secondary-button>
+                    </x-slot:back>
+                    <x-primary-button>
+                        {{ __('Next step') }}
+                    </x-primary-button>
+                </x-livewire::products.create.buttons>
             </form>
         </div>
     </div>
