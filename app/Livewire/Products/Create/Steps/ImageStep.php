@@ -2,11 +2,18 @@
 
 namespace App\Livewire\Products\Create\Steps;
 
+use Livewire\Attributes\Validate;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use Spatie\LivewireWizard\Components\StepComponent;
 
 class ImageStep extends StepComponent
 {
+    use WithFileUploads;
+
+    #[Validate('required|image|max:1024')]
+    public $image;
+
     public function stepInfo(): array
     {
         return [
@@ -16,10 +23,13 @@ class ImageStep extends StepComponent
 
     public function submit()
     {
-        // look the product up
-        // update
+        $this->validate();
 
-        dd($this->state()->product());
+        $this->state()->product()->update([
+            'image_path' => $this->image->storePubliclyAs('images', str()->uuid(), 'public')
+        ]);
+
+        $this->nextStep();
     }
 
     public function render()
