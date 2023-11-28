@@ -14,6 +14,14 @@ class ImageStep extends StepComponent
         ];
     }
 
+    public function submit()
+    {
+        // look the product up
+        // update
+
+        dd($this->state()->product());
+    }
+
     public function render()
     {
         return view('livewire.products.create.steps.image-step');

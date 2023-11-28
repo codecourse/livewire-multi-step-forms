@@ -14,6 +14,8 @@ class MetaStep extends StepComponent
     #[Validate('required')]
     public string $description;
 
+    public int $productId;
+
     public function stepInfo(): array
     {
         return [
@@ -25,9 +27,11 @@ class MetaStep extends StepComponent
     {
         $this->validate();
 
-        auth()->user()->products()->create(
+        $product = auth()->user()->products()->create(
             $this->only('title', 'description')
         );
+
+        $this->productId = $product->id;
 
         $this->nextStep();
     }
