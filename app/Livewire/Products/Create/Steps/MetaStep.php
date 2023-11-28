@@ -21,6 +21,17 @@ class MetaStep extends StepComponent
         ];
     }
 
+    public function submit()
+    {
+        $this->validate();
+
+        auth()->user()->products()->create(
+            $this->only('title', 'description')
+        );
+
+        $this->nextStep();
+    }
+
     public function render()
     {
         return view('livewire.products.create.steps.meta-step');
